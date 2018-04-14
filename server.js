@@ -11,5 +11,9 @@ app.get('/ping', (req, res) => {
   res.send('pong');
 });
 
+app.get('/test', (req, res) => {
+  res.send('WUBBA LUBBA DUB DUB!');
+});
+
 app.listen(PORT, () => console.log('Listening on PORT', PORT));
 app.use(cors());
