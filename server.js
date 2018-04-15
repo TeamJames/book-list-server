@@ -15,5 +15,9 @@ app.get('/test', (req, res) => {
   res.send('WUBBA LUBBA DUB DUB!');
 });
 
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
+
 app.listen(PORT, () => console.log('Listening on PORT', PORT));
 app.use(cors());
