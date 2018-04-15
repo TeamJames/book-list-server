@@ -7,7 +7,7 @@ const pg = require('pg');
 const app = express();
 const PORT = process.env.PORT;
 
-function pol(){console.log('im alive')};
+
 
 app.get('/ping', (req, res) => {
   res.send('pong');
@@ -15,6 +15,10 @@ app.get('/ping', (req, res) => {
 
 app.get('/test', (req, res) => {
   res.send('WUBBA LUBBA DUB DUB!');
+});
+
+app.get('/james', (req, res) => {
+  res.send('<h1>James</h1>');
 });
 
 app.get('*', (req, res) => {
