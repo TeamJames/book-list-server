@@ -25,8 +25,6 @@ app.get('*', (req, res) => {
   res.redirect('/test');
 });
 
-// remove this if test works
-
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
