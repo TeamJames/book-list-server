@@ -10,19 +10,17 @@ const DATABASE_URL = 'postgres://fmbgeoqnzjjeyv:3f4f570a963085f5f314eb1a409b6505
 const CLIENT_URL = 'https://teamjames.github.io/book-list-client/';
 
 
-app.use(function(req, res, next) {
-  res.header('Acces-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header('Acces-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
-app.get('/ping', (req, res, next) => {
-  res.send('pong');
-});
+app.use(cors());
 
-app.get('/test', (req, res, next) => {
-  res.send('WUBBA LUBBA DUB DUB!');
-});
+app.get('/ping', (req, res) => res.send('pong'));
+
+app.get('/test', (req, res) => res.send('WUBBA LUBBA DUB DUB!'));
 
 app.get('/james', (req, res, next) => {
   client.query(`
@@ -30,7 +28,7 @@ app.get('/james', (req, res, next) => {
   `).then(result => res.send(result.rows));
 });
 
-app.get('/Books', (req, res, next) => {
+app.get('/books', (req, res, next) => {
   client.query(`
     SELECT title FROM books;
   `).then(result => res.send(result.rows));
@@ -46,5 +44,5 @@ client.on('error', err => console.error(err));
 
 
 app.listen(PORT, () => console.log('Listening on PORT', PORT));
-app.use(cors());
+
 
