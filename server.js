@@ -33,7 +33,7 @@ app.get('/james', (req, res, next) => {
 app.get('/Books', (req, res, next) => {
   client.query(`
     SELECT title FROM books;
-  `);
+  `).then(result => res.send(result.rows));
 });
 
 app.get('*', (req, res, next) => {
