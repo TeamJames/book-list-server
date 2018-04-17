@@ -6,10 +6,16 @@ const pg = require('pg');
 
 const app = express();
 const PORT = process.env.PORT;
-const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URL = 'postgres://fmbgeoqnzjjeyv:3f4f570a963085f5f314eb1a409b6505e415a405f69e2a80b7b936bf9fc8e0be@ec2-54-221-192-231.compute-1.amazonaws.com:5432/d71d4lbu5f162a';
+const CLIENT_URL = 
 
+app.use(function(req, res, next) {
+  res.header('Acces-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
-app.get('/ping', (req, res) => {
+app.get('/ping', (req, res, next) => {
   res.send('pong');
 });
 
